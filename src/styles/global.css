@@ -1,0 +1,155 @@
+/* ============================================================
+   TERMINAL // MM-01 — brutalist urbex design system
+   ============================================================ */
+
+:root {
+  --font-display: 'Archivo', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+/* --- dark: the abandoned facility at night, emergency power --- */
+:root,
+:root[data-theme='dark'] {
+  --bg: #0c0d0c;
+  --bg-raised: #141614;
+  --bg-panel: #191b19;
+  --concrete: #2a2d2a;
+  --rust: #8a5a2b;
+  --line: #3a3d3a;
+  --line-strong: #555855;
+  --text: #d4d6d0;
+  --text-dim: #8b8e88;
+  --text-faint: #5c5f5a;
+  --accent: #9dff00;
+  --accent-dim: rgba(157, 255, 0, 0.14);
+  --accent-2: #4db8ff;
+  --warning: #ffb000;
+  --danger: #ff4d3a;
+  --scanline-opacity: 0.06;
+  --noise-opacity: 0.035;
+}
+
+/* --- light: daylight through a broken ceiling, dusty concrete --- */
+:root[data-theme='light'] {
+  --bg: #d8d6d0;
+  --bg-raised: #cfccc4;
+  --bg-panel: #c6c3ba;
+  --concrete: #b0ada4;
+  --rust: #96562a;
+  --line: #9a978e;
+  --line-strong: #6e6b63;
+  --text: #1d1f1c;
+  --text-dim: #4a4c47;
+  --text-faint: #75776f;
+  --accent: #3d7a00;
+  --accent-dim: rgba(61, 122, 0, 0.12);
+  --accent-2: #005f99;
+  --warning: #9a6a00;
+  --danger: #b32e1f;
+  --scanline-opacity: 0.03;
+  --noise-opacity: 0.05;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scrollbar-color: var(--line-strong) var(--bg);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* CRT scanlines overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, var(--scanline-opacity)) 3px,
+    transparent 4px
+  );
+}
+
+a {
+  color: var(--accent-2);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+}
+
+/* ---------- shared animations ---------- */
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.4; }
+  94% { opacity: 1; }
+  96% { opacity: 0.7; }
+  97% { opacity: 1; }
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes sweep {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100vw); }
+}
+
+@keyframes boot-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------- layout ---------- */
+
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px 96px;
+}
+
+.page {
+  animation: boot-in 0.35s ease-out;
+  padding-top: 40px;
+}

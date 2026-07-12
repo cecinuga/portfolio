@@ -1,0 +1,120 @@
+{
+  "site": {
+    "title": "MATTEO MARCHETTI",
+    "codename": "TERMINAL // MM-01",
+    "tagline": "SOFTWARE ENGINEER",
+    "subtitle": "machine learning · deep learning · neural networks",
+    "facility": "SECTOR 7 — ABANDONED DATA VAULT",
+    "bootLines": [
+      "> POWER GRID .............. UNSTABLE",
+      "> EMERGENCY SYSTEMS ....... ONLINE",
+      "> ARCHIVE INTEGRITY ....... 87%",
+      "> LAST OPERATOR ........... M. MARCHETTI",
+      "> STATUS .................. STILL RUNNING"
+    ]
+  },
+  "resume": {
+    "path": "/Resume.txt"
+  },
+  "pages": [
+    { "label": "HOME", "path": "/" },
+    { "label": "ABOUT", "path": "/about" },
+    { "label": "EXPERIMENTS", "path": "/experiments" },
+    { "label": "MY PROJECTS", "path": "/projects" },
+    { "label": "WORK EXPERIENCE", "path": "/experience" },
+    { "label": "BLOG", "path": "/blog" }
+  ],
+  "socials": [
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/matteomarchetti-",
+      "icon": "https://cdn-icons-png.flaticon.com/512/174/174857.png",
+      "attribution": {
+        "href": "https://www.flaticon.com/free-icons/linkedin",
+        "title": "linkedin icons"
+      }
+    },
+    {
+      "name": "GitHub",
+      "url": "https://www.github.com/cecinuga",
+      "icon": "https://cdn-icons-png.flaticon.com/512/25/25231.png",
+      "attribution": {
+        "href": "https://www.flaticon.com/free-icons/github",
+        "title": "github icons"
+      }
+    },
+    {
+      "name": "Email",
+      "url": "mailto:matteo.marchetti.info@gmail.com",
+      "icon": "https://cdn-icons-png.flaticon.com/512/281/281769.png",
+      "attribution": {
+        "href": "https://www.flaticon.com/free-icons/brands",
+        "title": "brands icons"
+      }
+    }
+  ],
+  "github": {
+    "username": "cecinuga",
+    "readmePreviewLines": 50,
+    "repositories": [
+      "cecinuga/portfolio"
+    ]
+  },
+  "about": {
+    "heading": "OPERATOR FILE",
+    "paragraphs": [
+      "Software engineer with a strong passion for machine learning, deep learning and neural networks.",
+      "I build systems that learn: from data pipelines to model architectures, from experiments to production code.",
+      "This terminal preserves my work. It keeps running on the last surviving server of the facility."
+    ],
+    "skills": [
+      "TypeScript",
+      "Python",
+      "React",
+      "PyTorch",
+      "TensorFlow",
+      "Neural Networks",
+      "Deep Learning",
+      "Data Engineering"
+    ]
+  },
+  "experiments": [
+    {
+      "id": "EXP-001",
+      "title": "NEURAL NETWORK PLAYGROUND",
+      "status": "ARCHIVED",
+      "description": "Hand-rolled feed-forward networks, backpropagation from scratch. No frameworks, only mathematics.",
+      "link": "https://www.github.com/cecinuga"
+    },
+    {
+      "id": "EXP-002",
+      "title": "SIGNAL RECONSTRUCTION",
+      "status": "UNSTABLE",
+      "description": "Autoencoders trained to recover corrupted transmissions from the surface.",
+      "link": "https://www.github.com/cecinuga"
+    },
+    {
+      "id": "EXP-003",
+      "title": "LATENT SPACE CARTOGRAPHY",
+      "status": "RUNNING",
+      "description": "Mapping embedding spaces of vision models. Charting territory no one will visit again.",
+      "link": "https://www.github.com/cecinuga"
+    }
+  ],
+  "blog": [
+    {
+      "id": "LOG-0001",
+      "date": "2026-01-15",
+      "title": "GRADIENT DESCENT IN THE DARK",
+      "excerpt": "Notes on optimizing models when you cannot see the loss landscape. Intuition, momentum, and why local minima are not the enemy.",
+      "link": null
+    },
+    {
+      "id": "LOG-0002",
+      "date": "2026-03-02",
+      "title": "ATTENTION IS ALL THAT SURVIVED",
+      "excerpt": "A field guide to transformer internals, written for whoever finds this terminal after me.",
+      "link": null
+    }
+  ]
+}

@@ -268,10 +268,20 @@
   margin-top: 12px;
   font-size: 0.78rem;
   color: var(--text-dim);
+}
+
+.readme-preview__text {
+  font: inherit;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
   max-height: 480px;
   overflow: hidden;
+}
+
+/* Only fade the edge when the README actually continues past the preview. */
+.readme-preview__text--clipped {
+  mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
 }
 
 .readme-preview__continue {

@@ -21,7 +21,11 @@ export function ReadmePreview({ readme }: ReadmePreviewProps) {
         />
       )}
       {hasContent ? (
-        <pre style={{ font: 'inherit', whiteSpace: 'pre-wrap' }}>
+        <pre
+          className={`readme-preview__text${
+            readme.truncated ? ' readme-preview__text--clipped' : ''
+          }`}
+        >
           {readme.previewLines.join('\n')}
         </pre>
       ) : (

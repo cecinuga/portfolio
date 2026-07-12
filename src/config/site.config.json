@@ -57,7 +57,10 @@
     "username": "cecinuga",
     "readmePreviewLines": 50,
     "repositories": [
-      "cecinuga/portfolio"
+      "cecinuga/lacli",
+      "cecinuga/tiny-lm",
+      "cecinuga/arxiv-mcp-server",
+      "cecinuga/fuzzy"
     ]
   },
   "about": {

@@ -107,20 +107,16 @@ export async function fetchRepoReadme(
   const url = `https://github.com/${repo}`
   const raw = await fetchRawReadme(repo)
   if (!raw) {
-    return { repo, url, previewLines: [], truncated: false, imageUrl: null }
+    return { repo, url, markdown: '', truncated: false, assetBase: '', linkBase: '' }
   }
 
-  const allLines = raw.text.split(/\r?\n/)
-  const previewLines = allLines
-    .slice(0, maxLines)
-    .map(stripMarkdown)
-    .map((l) => l.trimEnd())
-
+  const { markdown, truncated } = sliceMarkdown(raw.text, maxLines)
   return {
     repo,
     url,
-    previewLines,
-    truncated: allLines.length > maxLines,
-    imageUrl: extractFirstImage(raw.text, repo, raw.branch),
+    markdown,
+    truncated,
+    assetBase: `https://raw.githubusercontent.com/${repo}/${raw.branch}/`,
+    linkBase: `https://github.com/${repo}/blob/${raw.branch}/`,
   }
 }

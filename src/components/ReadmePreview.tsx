@@ -1,33 +1,30 @@
 import type { RepoReadme } from '../utils/github'
+import { MarkdownView } from './MarkdownView'
 
 interface ReadmePreviewProps {
   readme: RepoReadme
 }
 
 /**
- * First lines of a repository README with the "... continue" link
- * redirecting to the GitHub repository.
+ * First lines of a repository README rendered as HTML, with the
+ * "... continue" link redirecting to the GitHub repository.
  */
 export function ReadmePreview({ readme }: ReadmePreviewProps) {
-  const hasContent = readme.previewLines.length > 0
+  const hasContent = readme.markdown.length > 0
   return (
     <div className="readme-preview">
-      {readme.imageUrl && (
-        <img
-          className="repo-image"
-          src={readme.imageUrl}
-          alt={`${readme.repo} preview`}
-          loading="lazy"
-        />
-      )}
       {hasContent ? (
-        <pre
-          className={`readme-preview__text${
-            readme.truncated ? ' readme-preview__text--clipped' : ''
+        <div
+          className={`readme-preview__rendered${
+            readme.truncated ? ' readme-preview__rendered--clipped' : ''
           }`}
         >
-          {readme.previewLines.join('\n')}
-        </pre>
+          <MarkdownView
+            markdown={readme.markdown}
+            assetBase={readme.assetBase}
+            linkBase={readme.linkBase}
+          />
+        </div>
       ) : (
         <p className="state-line">{'> README NOT FOUND IN ARCHIVE'}</p>
       )}

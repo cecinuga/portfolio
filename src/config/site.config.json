@@ -85,10 +85,10 @@
   "experiments": [
     {
       "id": "EXP-001",
-      "title": "LINEAR REGRESSION",
+      "title": "SIMPLE LINEAR REGRESSION",
       "status": "ARCHIVED",
       "description": "Linear regression",
-      "link": "https://github.com/cecinuga/tiny-torch/tree/main/examples/linear_regression"
+      "link": "https://github.com/cecinuga/tiny-torch/tree/main/examples/linear_regression/simple"
     }
   ],
   "blog": [

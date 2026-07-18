@@ -10,7 +10,9 @@
     "deploy": "npm run build && firebase deploy"
   },
   "dependencies": {
+    "dompurify": "^3.4.12",
     "firebase": "^12.16.0",
+    "marked": "^18.0.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.0"

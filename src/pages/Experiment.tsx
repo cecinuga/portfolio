@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
+import { MarkdownView } from '../components/MarkdownView'
 import { PageHeader } from '../components/PageHeader'
 import { Panel } from '../components/Panel'
 import { StateLine } from '../components/StateLine'
@@ -57,21 +58,15 @@ export function Experiment() {
       />
       {readme && !loading && (
         <Panel label={experiment.id}>
-          <div className="readme-preview">
-            {readme.imageUrl && (
-              <img
-                className="repo-image"
-                src={readme.imageUrl}
-                alt={`${experiment.title} preview`}
-                loading="lazy"
-              />
-            )}
-            {readme.lines.length > 0 ? (
-              <pre className="readme-full">{readme.lines.join('\n')}</pre>
-            ) : (
-              <p className="state-line">{'> README NOT FOUND IN ARCHIVE'}</p>
-            )}
-          </div>
+          {readme.markdown ? (
+            <MarkdownView
+              markdown={readme.markdown}
+              assetBase={readme.assetBase}
+              linkBase={readme.linkBase}
+            />
+          ) : (
+            <p className="state-line">{'> README NOT FOUND IN ARCHIVE'}</p>
+          )}
         </Panel>
       )}
     </main>

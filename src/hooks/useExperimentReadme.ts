@@ -7,7 +7,7 @@ export function useExperimentReadme(link: string | null): AsyncState<LinkReadme>
     () =>
       link
         ? fetchLinkReadme(link)
-        : Promise.resolve({ url: '', lines: [], imageUrl: null }),
+        : Promise.resolve({ url: '', markdown: '', assetBase: '', linkBase: '' }),
     link ?? 'no-link',
   )
 }

@@ -61,10 +61,12 @@ function stripMarkdown(line: string): string {
 export interface LinkReadme {
   /** The original github.com link the README belongs to. */
   url: string
-  /** Full README, markdown stripped down to plain text. */
-  lines: string[]
-  /** First image referenced in the README, resolved to an absolute URL. */
-  imageUrl: string | null
+  /** Full README markdown source (empty if not found). */
+  markdown: string
+  /** Raw-content base URL (trailing slash) for resolving relative images/assets. */
+  assetBase: string
+  /** github.com blob base URL (trailing slash) for resolving relative doc links. */
+  linkBase: string
 }
 
 /** Parses a github.com repo or ``/tree/<branch>/<path>`` link into raw coordinates. */
@@ -82,10 +84,11 @@ function parseGithubLink(
   }
 }
 
-/** Fetches the full README behind any github.com repo/tree link. */
+/** Fetches the full README markdown behind any github.com repo/tree link. */
 export async function fetchLinkReadme(link: string): Promise<LinkReadme> {
+  const empty: LinkReadme = { url: link, markdown: '', assetBase: '', linkBase: '' }
   const parsed = parseGithubLink(link)
-  if (!parsed) return { url: link, lines: [], imageUrl: null }
+  if (!parsed) return empty
 
   const branches = parsed.branch ? [parsed.branch] : BRANCHES
   const prefix = parsed.path ? `${parsed.path}/` : ''
@@ -96,14 +99,11 @@ export async function fetchLinkReadme(link: string): Promise<LinkReadme> {
           `https://raw.githubusercontent.com/${parsed.repo}/${branch}/${prefix}${name}`,
         )
         if (res.ok) {
-          const text = await res.text()
           return {
             url: link,
-            lines: text
-              .split(/\r?\n/)
-              .map(stripMarkdown)
-              .map((l) => l.trimEnd()),
-            imageUrl: extractFirstImage(text, parsed.repo, branch, prefix),
+            markdown: await res.text(),
+            assetBase: `https://raw.githubusercontent.com/${parsed.repo}/${branch}/${prefix}`,
+            linkBase: `https://github.com/${parsed.repo}/blob/${branch}/${prefix}`,
           }
         }
       } catch {
@@ -111,7 +111,7 @@ export async function fetchLinkReadme(link: string): Promise<LinkReadme> {
       }
     }
   }
-  return { url: link, lines: [], imageUrl: null }
+  return empty
 }
 
 export async function fetchRepoReadme(

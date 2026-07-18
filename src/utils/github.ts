@@ -34,13 +34,18 @@ async function fetchRawReadme(repo: string): Promise<{ text: string; branch: str
 }
 
 /** Extracts the first image from markdown (``![alt](src)`` or ``<img src>``). */
-function extractFirstImage(markdown: string, repo: string, branch: string): string | null {
+function extractFirstImage(
+  markdown: string,
+  repo: string,
+  branch: string,
+  pathPrefix = '',
+): string | null {
   const md = markdown.match(/!\[[^\]]*\]\(([^)\s]+)/)
   const html = markdown.match(/<img[^>]+src=["']([^"']+)["']/i)
   const src = md?.[1] ?? html?.[1] ?? null
   if (!src) return null
   if (/^https?:\/\//.test(src)) return src
-  return `https://raw.githubusercontent.com/${repo}/${branch}/${src.replace(/^\.?\//, '')}`
+  return `https://raw.githubusercontent.com/${repo}/${branch}/${pathPrefix}${src.replace(/^\.?\//, '')}`
 }
 
 /** Light markdown cleanup so the preview reads like terminal output. */
@@ -51,6 +56,62 @@ function stripMarkdown(line: string): string {
     .replace(/<[^>]+>/g, '')
     .replace(/[*_`]{1,3}/g, '')
     .replace(/^#{1,6}\s*/, '')
+}
+
+export interface LinkReadme {
+  /** The original github.com link the README belongs to. */
+  url: string
+  /** Full README, markdown stripped down to plain text. */
+  lines: string[]
+  /** First image referenced in the README, resolved to an absolute URL. */
+  imageUrl: string | null
+}
+
+/** Parses a github.com repo or ``/tree/<branch>/<path>`` link into raw coordinates. */
+function parseGithubLink(
+  link: string,
+): { repo: string; branch: string | null; path: string } | null {
+  const match = link.match(
+    /^https?:\/\/(?:www\.)?github\.com\/([^/]+)\/([^/]+?)(?:\.git)?(?:\/tree\/([^/]+)\/?(.*?))?\/?$/,
+  )
+  if (!match) return null
+  return {
+    repo: `${match[1]}/${match[2]}`,
+    branch: match[3] ?? null,
+    path: match[4] ?? '',
+  }
+}
+
+/** Fetches the full README behind any github.com repo/tree link. */
+export async function fetchLinkReadme(link: string): Promise<LinkReadme> {
+  const parsed = parseGithubLink(link)
+  if (!parsed) return { url: link, lines: [], imageUrl: null }
+
+  const branches = parsed.branch ? [parsed.branch] : BRANCHES
+  const prefix = parsed.path ? `${parsed.path}/` : ''
+  for (const branch of branches) {
+    for (const name of README_NAMES) {
+      try {
+        const res = await fetch(
+          `https://raw.githubusercontent.com/${parsed.repo}/${branch}/${prefix}${name}`,
+        )
+        if (res.ok) {
+          const text = await res.text()
+          return {
+            url: link,
+            lines: text
+              .split(/\r?\n/)
+              .map(stripMarkdown)
+              .map((l) => l.trimEnd()),
+            imageUrl: extractFirstImage(text, parsed.repo, branch, prefix),
+          }
+        }
+      } catch {
+        // network error: try next candidate
+      }
+    }
+  }
+  return { url: link, lines: [], imageUrl: null }
 }
 
 export async function fetchRepoReadme(

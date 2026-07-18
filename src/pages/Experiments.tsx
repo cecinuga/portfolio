@@ -1,27 +1,30 @@
+import { Link } from 'react-router-dom'
 import { config } from '../config'
 import { PageHeader } from '../components/PageHeader'
 import { Panel } from '../components/Panel'
 import { StatusTag } from '../components/StatusTag'
 import type { ExperimentEntry } from '../config'
+import { experimentSlug } from '../utils/experiments'
 
 function ExperimentCard({ experiment }: { experiment: ExperimentEntry }) {
   return (
-    <Panel label={experiment.id}>
-      <StatusTag label={experiment.status} />
-      <h2 style={{ margin: '12px 0 8px', fontSize: '1.1rem' }}>
-        {experiment.title}
-      </h2>
-      <p style={{ color: 'var(--text-dim)', fontSize: '0.85rem' }}>
-        {experiment.description}
-      </p>
-      {experiment.link && (
-        <p style={{ marginTop: 12 }}>
-          <a href={experiment.link} target="_blank" rel="noreferrer">
-            {'> OPEN LOG'}
-          </a>
+    <Link
+      className="card-link"
+      to={`/experiments/${experimentSlug(experiment.title)}`}
+    >
+      <Panel label={experiment.id}>
+        <StatusTag label={experiment.status} />
+        <h2 style={{ margin: '12px 0 8px', fontSize: '1.1rem' }}>
+          {experiment.title}
+        </h2>
+        <p style={{ color: 'var(--text-dim)', fontSize: '0.85rem' }}>
+          {experiment.description}
         </p>
-      )}
-    </Panel>
+        <p style={{ marginTop: 12 }}>
+          <span className="card-link__open">{'> OPEN'}</span>
+        </p>
+      </Panel>
+    </Link>
   )
 }
 

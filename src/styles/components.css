@@ -145,6 +145,30 @@
   animation: blink 1.1s step-end infinite;
 }
 
+.page-header__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.ghost-button {
+  display: inline-block;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 8px 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.ghost-button:hover {
+  background: var(--accent-dim);
+  box-shadow: inset 0 -2px 0 var(--accent);
+}
+
 .page-header__note {
   color: var(--text-dim);
   max-width: 640px;
@@ -312,6 +336,34 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
+}
+
+/* Whole-card link wrapper: the entire panel is the click target. */
+.card-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.card-link:hover .panel {
+  border-color: var(--accent);
+}
+
+.card-link__open {
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.card-link:hover .card-link__open {
+  text-decoration: underline;
+}
+
+/* Full README body on the single-experiment page (no clipping). */
+.readme-full {
+  font: inherit;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 .skill-list {

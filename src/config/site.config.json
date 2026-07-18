@@ -57,6 +57,7 @@
     "username": "cecinuga",
     "readmePreviewLines": 50,
     "repositories": [
+      "cecinuga/tiny-torch",
       "cecinuga/lacli",
       "cecinuga/tiny-lm",
       "cecinuga/arxiv-mcp-server",
@@ -71,10 +72,10 @@
       "This terminal preserves my work. It keeps running on the last surviving server of the facility."
     ],
     "skills": [
-      "TypeScript",
+      "Golang",
       "Python",
-      "React",
-      "PyTorch",
+      "Pytorch",
+      ".NET",
       "TensorFlow",
       "Neural Networks",
       "Deep Learning",
@@ -84,24 +85,10 @@
   "experiments": [
     {
       "id": "EXP-001",
-      "title": "NEURAL NETWORK PLAYGROUND",
+      "title": "LINEAR REGRESSION",
       "status": "ARCHIVED",
-      "description": "Hand-rolled feed-forward networks, backpropagation from scratch. No frameworks, only mathematics.",
-      "link": "https://www.github.com/cecinuga"
-    },
-    {
-      "id": "EXP-002",
-      "title": "SIGNAL RECONSTRUCTION",
-      "status": "UNSTABLE",
-      "description": "Autoencoders trained to recover corrupted transmissions from the surface.",
-      "link": "https://www.github.com/cecinuga"
-    },
-    {
-      "id": "EXP-003",
-      "title": "LATENT SPACE CARTOGRAPHY",
-      "status": "RUNNING",
-      "description": "Mapping embedding spaces of vision models. Charting territory no one will visit again.",
-      "link": "https://www.github.com/cecinuga"
+      "description": "Linear regression",
+      "link": "https://github.com/cecinuga/tiny-torch/tree/main/examples/linear_regression"
     }
   ],
   "blog": [

@@ -34,6 +34,7 @@ export function Experiment() {
   return (
     <main className="page">
       <PageHeader
+        variant="feature"
         kicker={`LABORATORY // ${experiment.id}`}
         title={experiment.title}
         note={experiment.description}

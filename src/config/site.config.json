@@ -85,10 +85,10 @@
   "experiments": [
     {
       "id": "EXP-001",
-      "title": "SIMPLE LINEAR REGRESSION",
+      "title": "LINEAR REGRESSION",
       "status": "ARCHIVED",
-      "description": "Linear regression",
-      "link": "https://github.com/cecinuga/tiny-torch/tree/main/examples/linear_regression/simple"
+      "description": "How ill-conditioned data breaks weights",
+      "link": "https://github.com/cecinuga/tiny-torch/tree/main/examples/linear_regression/linear-ill-cond"
     }
   ],
   "blog": [

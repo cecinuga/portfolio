@@ -31,6 +31,19 @@ export function Experiment() {
     )
   }
 
+  // Single definition reused at the top and bottom of the page so both
+  // GITHUB entry points stay identical in behaviour and styling.
+  const githubButton = experiment.link ? (
+    <a
+      className="ghost-button"
+      href={experiment.link}
+      target="_blank"
+      rel="noreferrer"
+    >
+      GITHUB
+    </a>
+  ) : null
+
   return (
     <main className="page">
       <PageHeader
@@ -38,18 +51,7 @@ export function Experiment() {
         kicker={`LABORATORY // ${experiment.id}`}
         title={experiment.title}
         note={experiment.description}
-        action={
-          experiment.link && (
-            <a
-              className="ghost-button"
-              href={experiment.link}
-              target="_blank"
-              rel="noreferrer"
-            >
-              GITHUB
-            </a>
-          )
-        }
+        action={githubButton}
       />
       <StatusTag label={experiment.status} />
       <StateLine
@@ -69,6 +71,12 @@ export function Experiment() {
             <p className="state-line">{'> README NOT FOUND IN ARCHIVE'}</p>
           )}
         </Panel>
+      )}
+      {githubButton && (
+        <div className="page-actions">
+          <span className="page-actions__label">{'> END OF LOG'}</span>
+          {githubButton}
+        </div>
       )}
     </main>
   )

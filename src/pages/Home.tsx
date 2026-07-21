@@ -18,6 +18,13 @@ export function Home() {
         <p className="hero__subtitle">{site.subtitle}</p>
       </section>
 
+      <PageHeader
+        kicker="TRANSMISSION"
+        title="ARCHIVE ONLINE"
+        note="You have reached the personal archive of a software engineer. Machine learning models, experiments and work logs are preserved on this terminal. Navigate with the menu above."
+      />
+      <StatusTag label="RUNNING" />
+
       <Panel label="SYSTEM BOOT">
         <ul className="boot-log">
           {site.bootLines.map((line, i) => (
@@ -25,13 +32,6 @@ export function Home() {
           ))}
         </ul>
       </Panel>
-
-      <PageHeader
-        kicker="TRANSMISSION"
-        title="ARCHIVE ONLINE"
-        note="You have reached the personal archive of a software engineer. Machine learning models, experiments and work logs are preserved on this terminal. Navigate with the menu above."
-      />
-      <StatusTag label="RUNNING" />
     </main>
   )
 }

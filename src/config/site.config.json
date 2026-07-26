@@ -85,10 +85,17 @@
   "experiments": [
     {
       "id": "EXP-001",
-      "title": "LINEAR REGRESSION",
+      "title": "LINEAR REGRESSION - ILL COND",
       "status": "ARCHIVED",
       "description": "How ill-conditioned data breaks weights",
-      "link": "https://github.com/cecinuga/tiny-torch/tree/main/examples/linear_regression/linear-ill-cond"
+      "link": "https://github.com/cecinuga/tiny-torch/tree/main/examples/linear_regression/ill-cond"
+    },
+    {
+      "id": "EXP-002",
+      "title": "LINEAR REGRESSION - VARIANCE",
+      "status": "ARCHIVED",
+      "description": "How variance reduce performance in linear regression",
+      "link": "https://github.com/cecinuga/tiny-torch/tree/main/examples/linear_regression/variance"
     }
   ],
   "blog": [

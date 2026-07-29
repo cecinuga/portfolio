@@ -94,8 +94,15 @@
       "id": "EXP-002",
       "title": "LINEAR REGRESSION - VARIANCE",
       "status": "ARCHIVED",
-      "description": "How variance reduce performance in linear regression",
+      "description": "How variance reduce performance in estimator model",
       "link": "https://github.com/cecinuga/tiny-torch/tree/main/examples/linear_regression/variance"
+    },
+    {
+      "id": "EXP-003",
+      "title": "LINEAR REGRESSION - REGULARIZATION",
+      "status": "ARCHIVED",
+      "description": "Regularization effects on the model parameters in high variance dataset",
+      "link": "https://github.com/cecinuga/tiny-torch/tree/main/examples/linear_regression/regularization"
     }
   ],
   "blog": [

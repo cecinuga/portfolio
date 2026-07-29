@@ -102,7 +102,7 @@
       "title": "LINEAR REGRESSION - REGULARIZATION",
       "status": "ARCHIVED",
       "description": "Regularization effects on the model parameters in high variance dataset",
-      "link": "https://github.com/cecinuga/tiny-torch/tree/main/examples/linear_regression/ridge_regression"
+      "link": "https://github.com/cecinuga/tiny-torch/tree/main/examples/linear_regression/regularization/L2"
     }
   ],
   "blog": [

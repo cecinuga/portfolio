@@ -106,19 +106,6 @@
     }
   ],
   "blog": [
-    {
-      "id": "LOG-0001",
-      "date": "2026-01-15",
-      "title": "GRADIENT DESCENT IN THE DARK",
-      "excerpt": "Notes on optimizing models when you cannot see the loss landscape. Intuition, momentum, and why local minima are not the enemy.",
-      "link": null
-    },
-    {
-      "id": "LOG-0002",
-      "date": "2026-03-02",
-      "title": "ATTENTION IS ALL THAT SURVIVED",
-      "excerpt": "A field guide to transformer internals, written for whoever finds this terminal after me.",
-      "link": null
-    }
+
   ]
 }

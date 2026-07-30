@@ -103,6 +103,13 @@
       "status": "ARCHIVED",
       "description": "Regularization effects on the model parameters in high variance dataset",
       "link": "https://github.com/cecinuga/tiny-torch/tree/main/examples/linear_regression/regularization/L2"
+    },
+    {
+      "id": "EXP-004",
+      "title": "LINEAR REGRESSION - DOUBLE DECAY",
+      "status": "ARCHIVED",
+      "description": "Indipendent weights and decay terms effects on the model parameters in high variance dataset",
+      "link": "https://github.com/cecinuga/tiny-torch/tree/main/examples/linear_regression/regularization/DL2"
     }
   ],
   "blog": [

@@ -15,3 +15,15 @@ export function findExperimentBySlug(slug: string): ExperimentEntry | undefined 
     (experiment) => experimentSlug(experiment.title) === slug,
   )
 }
+
+/**
+ * Picks the link to source the README from: the "github" entry when present,
+ * otherwise the first github.com link, otherwise null.
+ */
+export function experimentReadmeLink(experiment: ExperimentEntry): string | null {
+  const links = experiment.link
+  if (!links) return null
+  if (links.github) return links.github
+  const githubEntry = Object.values(links).find((url) => url.includes('github.com'))
+  return githubEntry ?? null
+}

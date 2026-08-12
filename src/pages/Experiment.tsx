@@ -5,14 +5,14 @@ import { Panel } from '../components/Panel'
 import { StateLine } from '../components/StateLine'
 import { StatusTag } from '../components/StatusTag'
 import { useExperimentReadme } from '../hooks/useExperimentReadme'
-import { findExperimentBySlug } from '../utils/experiments'
+import { experimentReadmeLink, findExperimentBySlug } from '../utils/experiments'
 
 /** Single-experiment page: renders the README behind the experiment's GitHub link. */
 export function Experiment() {
   const { slug } = useParams()
   const experiment = findExperimentBySlug(slug ?? '')
   const { data: readme, loading, error } = useExperimentReadme(
-    experiment?.link ?? null,
+    experiment ? experimentReadmeLink(experiment) : null,
   )
 
   if (!experiment) {
@@ -32,17 +32,26 @@ export function Experiment() {
   }
 
   // Single definition reused at the top and bottom of the page so both
-  // GITHUB entry points stay identical in behaviour and styling.
-  const githubButton = experiment.link ? (
-    <a
-      className="ghost-button"
-      href={experiment.link}
-      target="_blank"
-      rel="noreferrer"
-    >
-      GITHUB
-    </a>
-  ) : null
+  // link strips stay identical in behaviour and styling. An experiment can
+  // expose multiple entry points (github, web-app, ...); each becomes its
+  // own ghost-button, laid out horizontally in the same accent color.
+  const linkEntries = experiment.link ? Object.entries(experiment.link) : []
+  const linkButtons =
+    linkEntries.length > 0 ? (
+      <div className="button-row">
+        {linkEntries.map(([label, href]) => (
+          <a
+            key={label}
+            className="ghost-button"
+            href={href}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {label.toUpperCase()}
+          </a>
+        ))}
+      </div>
+    ) : null
 
   return (
     <main className="page">
@@ -51,7 +60,7 @@ export function Experiment() {
         kicker={`LABORATORY // ${experiment.id}`}
         title={experiment.title}
         note={experiment.description}
-        action={githubButton}
+        action={linkButtons}
       />
       <StatusTag label={experiment.status} />
       <StateLine
@@ -72,10 +81,10 @@ export function Experiment() {
           )}
         </Panel>
       )}
-      {githubButton && (
+      {linkButtons && (
         <div className="page-actions">
           <span className="page-actions__label">{'> END OF LOG'}</span>
-          {githubButton}
+          {linkButtons}
         </div>
       )}
     </main>

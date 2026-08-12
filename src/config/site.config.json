@@ -88,28 +88,37 @@
       "title": "LINEAR REGRESSION - ILL COND",
       "status": "ARCHIVED",
       "description": "How ill-conditioned data breaks weights",
-      "link": "https://github.com/cecinuga/tiny-torch/tree/main/examples/linear_regression/ill-cond"
+      "link": {
+        "github": "https://github.com/cecinuga/tiny-torch/tree/main/examples/linear_regression/ill-cond"
+      }
     },
     {
       "id": "EXP-002",
       "title": "LINEAR REGRESSION - VARIANCE",
       "status": "ARCHIVED",
       "description": "How variance reduce performance in estimator model",
-      "link": "https://github.com/cecinuga/tiny-torch/tree/main/examples/linear_regression/variance"
+      "link": {
+        "github": "https://github.com/cecinuga/tiny-torch/tree/main/examples/linear_regression/variance"
+      }
     },
     {
       "id": "EXP-003",
       "title": "LINEAR REGRESSION - REGULARIZATION",
       "status": "ARCHIVED",
       "description": "Regularization effects on the model parameters in high variance dataset",
-      "link": "https://github.com/cecinuga/tiny-torch/tree/main/examples/linear_regression/regularization/L2"
+      "link": {
+        "github": "https://github.com/cecinuga/tiny-torch/tree/main/examples/linear_regression/regularization/L2"
+      }
     },
     {
       "id": "EXP-004",
-      "title": "LINEAR REGRESSION - DOUBLE DECAY",
+      "title": "EIGSHOW - INTERACTIVE WEB APP",
       "status": "ARCHIVED",
-      "description": "Indipendent weights and decay terms effects on the model parameters in high variance dataset",
-      "link": "https://github.com/cecinuga/tiny-torch/tree/main/examples/linear_regression/regularization/DL2"
+      "description": "Interactive eigshow web app to visualize eigenstuffs",
+      "link": {
+        "github": "https://github.com/cecinuga/eigshow/",
+        "web-app": "https://eigshow.web.app/"
+      }
     }
   ],
   "blog": [

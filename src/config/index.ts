@@ -17,12 +17,15 @@ export interface PageLink {
   path: string
 }
 
+/** Maps a button label (e.g. "github", "web-app") to the URL it opens. */
+export type ExperimentLinks = Record<string, string>
+
 export interface ExperimentEntry {
   id: string
   title: string
   status: string
   description: string
-  link: string | null
+  link: ExperimentLinks | null
 }
 
 export interface BlogEntry {

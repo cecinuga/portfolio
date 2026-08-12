@@ -164,6 +164,14 @@
   text-transform: uppercase;
 }
 
+/* Horizontal strip of ghost-buttons, e.g. an experiment's multiple links. */
+.button-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 .ghost-button:hover {
   background: var(--accent-dim);
   box-shadow: inset 0 -2px 0 var(--accent);

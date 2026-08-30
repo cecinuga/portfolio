@@ -85,33 +85,33 @@
   "experiments": [
     {
       "id": "EXP-001",
+      "title": "LSTM - BINARY CLASSIFICATION OVER BNF GRAMMAR STRINGS",
+      "status": "ARCHIVED",
+      "description": "Train an LSTM to classify valid or invalid sequences according to a BNF Grammar definition",
+      "link": {
+        "github": "https://github.com/cecinuga/tiny-torch/tree/main/examples/recurrent/lstm"
+      }
+    },
+    {
+      "id": "EXP-001",
       "title": "LINEAR REGRESSION - ILL COND",
       "status": "ARCHIVED",
       "description": "How ill-conditioned data breaks weights",
       "link": {
-        "github": "https://github.com/cecinuga/tiny-torch/tree/main/examples/linear_regression/ill-cond"
+        "github": "https://github.com/cecinuga/tiny-torch/tree/main/examples/regression/ill-cond"
       }
     },
     {
       "id": "EXP-002",
-      "title": "LINEAR REGRESSION - VARIANCE",
-      "status": "ARCHIVED",
-      "description": "How variance reduce performance in estimator model",
-      "link": {
-        "github": "https://github.com/cecinuga/tiny-torch/tree/main/examples/linear_regression/variance"
-      }
-    },
-    {
-      "id": "EXP-003",
       "title": "LINEAR REGRESSION - REGULARIZATION",
       "status": "ARCHIVED",
       "description": "Regularization effects on the model parameters in high variance dataset",
       "link": {
-        "github": "https://github.com/cecinuga/tiny-torch/tree/main/examples/linear_regression/regularization/L2"
+        "github": "https://github.com/cecinuga/tiny-torch/tree/main/examples/regression/regularization/L2"
       }
     },
     {
-      "id": "EXP-004",
+      "id": "EXP-003",
       "title": "EIGSHOW - INTERACTIVE WEB APP",
       "status": "ARCHIVED",
       "description": "Interactive eigshow web app to visualize eigenstuffs",

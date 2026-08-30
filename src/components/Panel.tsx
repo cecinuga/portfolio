@@ -5,7 +5,7 @@ interface PanelProps {
   children: ReactNode
 }
 
-/** Industrial panel container with a corner label. */
+/** Rounded surface container with a small pill label. */
 export function Panel({ label, children }: PanelProps) {
   return (
     <section className="panel">

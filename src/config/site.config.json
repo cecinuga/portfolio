@@ -1,57 +1,29 @@
 {
   "site": {
-    "title": "MATTEO MARCHETTI",
-    "codename": "TERMINAL // MM-01",
-    "tagline": "SOFTWARE ENGINEER",
-    "subtitle": "machine learning · deep learning · neural networks",
-    "facility": "SECTOR 7 — ABANDONED DATA VAULT",
-    "bootLines": [
-      "> POWER GRID .............. UNSTABLE",
-      "> EMERGENCY SYSTEMS ....... ONLINE",
-      "> ARCHIVE INTEGRITY ....... 87%",
-      "> LAST OPERATOR ........... M. MARCHETTI",
-      "> STATUS .................. STILL RUNNING"
+    "title": "Matteo Marchetti",
+    "tagline": "software engineer",
+    "kicker": "Hi, I'm",
+    "rightNow": [
+      { "label": "Role", "value": "Software Engineer at TD Group" },
+      { "label": "Based in", "value": "Pisa, Italia" },
+      { "label": "Exploring", "value": "neural networks, AI agents, 3D & AR" }
     ]
   },
   "resume": {
-    "path": "/Resume.txt"
+    "path": "/Resume.txt",
+    "download": "/MatteoMarchettiResume.pdf"
   },
   "pages": [
-    { "label": "HOME", "path": "/" },
-    { "label": "ABOUT", "path": "/about" },
-    { "label": "EXPERIMENTS", "path": "/experiments" },
-    { "label": "MY PROJECTS", "path": "/projects" },
-    { "label": "WORK EXPERIENCE", "path": "/experience" },
-    { "label": "BLOG", "path": "/blog" }
+    { "label": "Home", "path": "/" },
+    { "label": "Experiments", "path": "/experiments" },
+    { "label": "My Projects", "path": "/projects" },
+    { "label": "Work Experience", "path": "/experience" },
+    { "label": "Blog", "path": "/blog" }
   ],
   "socials": [
-    {
-      "name": "LinkedIn",
-      "url": "https://www.linkedin.com/in/matteomarchetti-",
-      "icon": "https://cdn-icons-png.flaticon.com/512/174/174857.png",
-      "attribution": {
-        "href": "https://www.flaticon.com/free-icons/linkedin",
-        "title": "linkedin icons"
-      }
-    },
-    {
-      "name": "GitHub",
-      "url": "https://www.github.com/cecinuga",
-      "icon": "https://cdn-icons-png.flaticon.com/512/25/25231.png",
-      "attribution": {
-        "href": "https://www.flaticon.com/free-icons/github",
-        "title": "github icons"
-      }
-    },
-    {
-      "name": "Email",
-      "url": "mailto:matteo.marchetti.info@gmail.com",
-      "icon": "https://cdn-icons-png.flaticon.com/512/281/281769.png",
-      "attribution": {
-        "href": "https://www.flaticon.com/free-icons/brands",
-        "title": "brands icons"
-      }
-    }
+    { "name": "LinkedIn", "url": "https://www.linkedin.com/in/matteomarchetti-" },
+    { "name": "GitHub", "url": "https://www.github.com/cecinuga" },
+    { "name": "Email", "url": "mailto:matteo.marchetti.info@gmail.com" }
   ],
   "github": {
     "username": "cecinuga",
@@ -65,27 +37,49 @@
     ]
   },
   "about": {
-    "heading": "OPERATOR FILE",
     "paragraphs": [
-      "Software engineer with a strong passion for machine learning, deep learning and neural networks.",
+      "I'm a software engineer with a strong passion for machine learning, deep learning and neural networks.",
       "I build systems that learn: from data pipelines to model architectures, from experiments to production code.",
-      "This terminal preserves my work. It keeps running on the last surviving server of the facility."
+      "This site collects my work and keeps it in one place — experiments, projects and everything in between."
     ],
     "skills": [
-      "Golang",
+      "Machine Learning",
+      "Deep Learning",
+      "Neural Networks",
       "Python",
       "Pytorch",
+      "Golang",
       ".NET",
-      "TensorFlow",
-      "Neural Networks",
-      "Deep Learning",
-      "Data Engineering"
-    ]
+      "MCP",
+      "Distributed Systems",
+      "Microservices",
+      "Redis",
+      "Kafka",
+      "SQL"
+    ],
+    "quality": {
+      "title": "My Definition of Quality",
+      "intro": "I love my job, I put quality of software on top on my priority.",
+      "listLabel": "My definition of quality:",
+      "values": [
+        "Simplicity",
+        "Efficiency",
+        "Resilience",
+        "Affidability",
+        "Coherence",
+        "Good user experience",
+        "Armony, Beautyness"
+      ],
+      "paragraphs": [
+        "I believe that to build a great product, engineers must have their professional compass oriented toward to the end user's joy, whether is a developer or a final customer, it doesn't matter, the most important thing is to has as a direction the satisfaction of the end user.",
+        "I love programming, but i found joy in writing tech spec, this allow to me think at the full picture of how various complex components interacts together, and this improves the quality of my final result."
+      ]
+    }
   },
   "experiments": [
     {
       "id": "EXP-001",
-      "title": "LSTM - BINARY CLASSIFICATION OVER BNF GRAMMAR STRINGS",
+      "title": "LSTM — binary classification over BNF grammar strings",
       "status": "ARCHIVED",
       "description": "Train an LSTM to classify valid or invalid sequences according to a BNF Grammar definition",
       "link": {
@@ -94,7 +88,7 @@
     },
     {
       "id": "EXP-001",
-      "title": "LINEAR REGRESSION - ILL COND",
+      "title": "Linear regression — ill cond",
       "status": "ARCHIVED",
       "description": "How ill-conditioned data breaks weights",
       "link": {
@@ -103,7 +97,7 @@
     },
     {
       "id": "EXP-002",
-      "title": "LINEAR REGRESSION - REGULARIZATION",
+      "title": "Linear regression — regularization",
       "status": "ARCHIVED",
       "description": "Regularization effects on the model parameters in high variance dataset",
       "link": {
@@ -112,7 +106,7 @@
     },
     {
       "id": "EXP-003",
-      "title": "EIGSHOW - INTERACTIVE WEB APP",
+      "title": "Eigshow — interactive web app",
       "status": "ARCHIVED",
       "description": "Interactive eigshow web app to visualize eigenstuffs",
       "link": {

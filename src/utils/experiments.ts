@@ -27,3 +27,10 @@ export function experimentReadmeLink(experiment: ExperimentEntry): string | null
   const githubEntry = Object.values(links).find((url) => url.includes('github.com'))
   return githubEntry ?? null
 }
+
+/** Human label for a link key: "github" → "GitHub", "web-app" → "Web app". */
+export function formatLinkLabel(key: string): string {
+  if (key.toLowerCase() === 'github') return 'GitHub'
+  const spaced = key.replace(/[-_]+/g, ' ').trim()
+  return spaced.charAt(0).toUpperCase() + spaced.slice(1)
+}

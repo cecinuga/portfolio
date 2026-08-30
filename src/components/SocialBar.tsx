@@ -5,13 +5,13 @@ interface SocialBarProps {
   socials: SocialLink[]
 }
 
-/** Row of social icons. */
+/** Row of round social icon buttons. */
 export function SocialBar({ socials }: SocialBarProps) {
   return (
-    <div className="social-bar">
+    <>
       {socials.map((social) => (
         <SocialIcon key={social.name} social={social} />
       ))}
-    </div>
+    </>
   )
 }

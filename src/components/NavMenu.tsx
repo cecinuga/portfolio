@@ -5,7 +5,7 @@ interface NavMenuProps {
   pages: PageLink[]
 }
 
-/** Equally-spaced navigation links to the site pages. */
+/** Pill navigation to the site pages. */
 export function NavMenu({ pages }: NavMenuProps) {
   return (
     <nav className="nav-menu" aria-label="Main navigation">

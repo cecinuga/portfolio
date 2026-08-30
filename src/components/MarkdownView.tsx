@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import 'katex/dist/katex.min.css'
 import { renderMarkdown } from '../utils/markdown'
 
 interface MarkdownViewProps {

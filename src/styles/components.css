@@ -784,6 +784,12 @@
   overflow-wrap: anywhere;
 }
 
+.markdown-body .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 2px 0;
+}
+
 .markdown-body h1,
 .markdown-body h2,
 .markdown-body h3,

@@ -1,4 +1,5 @@
 import type { RepoReadme } from '../utils/github'
+import { ArrowUpRightIcon } from './Icons'
 import { MarkdownView } from './MarkdownView'
 
 interface ReadmePreviewProps {
@@ -7,7 +8,7 @@ interface ReadmePreviewProps {
 
 /**
  * First lines of a repository README rendered as HTML, with the
- * "... continue" link redirecting to the GitHub repository.
+ * continue link redirecting to the GitHub repository.
  */
 export function ReadmePreview({ readme }: ReadmePreviewProps) {
   const hasContent = readme.markdown.length > 0
@@ -26,7 +27,7 @@ export function ReadmePreview({ readme }: ReadmePreviewProps) {
           />
         </div>
       ) : (
-        <p className="state-line">{'> README NOT FOUND IN ARCHIVE'}</p>
+        <p>README not found — open the repository to browse the code.</p>
       )}
       <a
         className="readme-preview__continue"
@@ -34,7 +35,7 @@ export function ReadmePreview({ readme }: ReadmePreviewProps) {
         target="_blank"
         rel="noreferrer"
       >
-        ... continue
+        Continue reading on GitHub <ArrowUpRightIcon size={13} />
       </a>
     </div>
   )

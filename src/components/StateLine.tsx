@@ -4,13 +4,13 @@ interface StateLineProps {
   loadingText?: string
 }
 
-/** Terminal-style loading/error indicator for async content. */
+/** Pill-style loading/error indicator for async content. */
 export function StateLine({
   loading,
   error,
-  loadingText = '> RETRIEVING DATA FROM ARCHIVE ...',
+  loadingText = 'Fetching data…',
 }: StateLineProps) {
   if (loading) return <p className="state-line">{loadingText}</p>
-  if (error) return <p className="state-line state-line--error">{`> ERROR: ${error}`}</p>
+  if (error) return <p className="state-line state-line--error">{`Error: ${error}`}</p>
   return null
 }

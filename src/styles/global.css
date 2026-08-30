@@ -1,53 +1,53 @@
 /* ============================================================
-   TERMINAL // MM-01 — brutalist urbex design system
+   Organic — warm, rounded design system
    ============================================================ */
 
 :root {
-  --font-display: 'Archivo', system-ui, sans-serif;
-  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-heading: 'Caprasimo', serif;
+  --font-body: 'Figtree', system-ui, sans-serif;
 }
 
-/* --- dark: the abandoned facility at night, emergency power --- */
+/* --- light: cream and sand, terracotta + sage accents --- */
 :root,
-:root[data-theme='dark'] {
-  --bg: #0c0d0c;
-  --bg-raised: #141614;
-  --bg-panel: #191b19;
-  --concrete: #2a2d2a;
-  --rust: #8a5a2b;
-  --line: #3a3d3a;
-  --line-strong: #555855;
-  --text: #d4d6d0;
-  --text-dim: #8b8e88;
-  --text-faint: #5c5f5a;
-  --accent: #9dff00;
-  --accent-dim: rgba(157, 255, 0, 0.14);
-  --accent-2: #4db8ff;
-  --warning: #ffb000;
-  --danger: #ff4d3a;
-  --scanline-opacity: 0.06;
-  --noise-opacity: 0.035;
+:root[data-theme='light'] {
+  --bg: #f5ead8;
+  --surface: #ebddc5;
+  --card: #f9f4ed;
+  --text: #201e1d;
+  --muted: #645c50;
+  --divider: rgba(32, 30, 29, 0.16);
+  --accent: #c67139;
+  --accent-hi: #b2622d;
+  --accent-deep: #8c491a;
+  --accent-tint: #ffe1d0;
+  --accent-tint-ink: #643312;
+  --sage: #7a8a5e;
+  --sage-tint: #e1eecc;
+  --sage-ink: #3d472b;
+  --on-accent: #fff2eb;
+  --shadow: 0 3px 10px rgba(46, 43, 37, 0.14);
+  --shadow-lg: 0 12px 32px rgba(46, 43, 37, 0.2);
 }
 
-/* --- light: daylight through a broken ceiling, dusty concrete --- */
-:root[data-theme='light'] {
-  --bg: #d8d6d0;
-  --bg-raised: #cfccc4;
-  --bg-panel: #c6c3ba;
-  --concrete: #b0ada4;
-  --rust: #96562a;
-  --line: #9a978e;
-  --line-strong: #6e6b63;
-  --text: #1d1f1c;
-  --text-dim: #4a4c47;
-  --text-faint: #75776f;
-  --accent: #3d7a00;
-  --accent-dim: rgba(61, 122, 0, 0.12);
-  --accent-2: #005f99;
-  --warning: #9a6a00;
-  --danger: #b32e1f;
-  --scanline-opacity: 0.03;
-  --noise-opacity: 0.05;
+/* --- dark: warm near-black, the same ramps lifted --- */
+:root[data-theme='dark'] {
+  --bg: #26231f;
+  --surface: #312d27;
+  --card: #3a352d;
+  --text: #f5ead8;
+  --muted: #c0b6a5;
+  --divider: rgba(245, 234, 216, 0.16);
+  --accent: #d67f48;
+  --accent-hi: #f6a06b;
+  --accent-deep: #ffc6a5;
+  --accent-tint: #4b2f16;
+  --accent-tint-ink: #ffc6a5;
+  --sage: #aebf92;
+  --sage-tint: #3d472b;
+  --sage-ink: #ccdbb2;
+  --on-accent: #fff2eb;
+  --shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.4);
 }
 
 * {
@@ -56,82 +56,56 @@
   box-sizing: border-box;
 }
 
-html {
-  scrollbar-color: var(--line-strong) var(--bg);
-}
-
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: var(--font-mono);
-  font-size: 15px;
+  font-family: var(--font-body);
+  font-size: 15.5px;
   line-height: 1.6;
   min-height: 100vh;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-/* CRT scanlines overlay */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 999;
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0px,
-    transparent 2px,
-    rgba(0, 0, 0, var(--scanline-opacity)) 3px,
-    transparent 4px
-  );
+  transition: background 0.35s ease, color 0.35s ease;
 }
 
 a {
-  color: var(--accent-2);
-  text-decoration: none;
+  color: var(--accent-deep);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 a:hover {
-  color: var(--accent);
+  color: var(--accent-hi);
 }
 
 ::selection {
-  background: var(--accent);
-  color: var(--bg);
+  background: rgba(198, 113, 57, 0.3);
 }
 
-h1, h2, h3 {
-  font-family: var(--font-display);
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  line-height: 1.05;
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
 }
 
 /* ---------- shared animations ---------- */
 
-@keyframes flicker {
-  0%, 100% { opacity: 1; }
-  92% { opacity: 1; }
-  93% { opacity: 0.4; }
-  94% { opacity: 1; }
-  96% { opacity: 0.7; }
-  97% { opacity: 1; }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
 }
 
-@keyframes blink {
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0; }
-}
-
-@keyframes sweep {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(100vw); }
-}
-
-@keyframes boot-in {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -144,12 +118,17 @@ h1, h2, h3 {
 /* ---------- layout ---------- */
 
 .app {
-  max-width: 1200px;
+  max-width: 1160px;
   margin: 0 auto;
-  padding: 0 24px 96px;
+  padding: 0 40px 90px;
 }
 
 .page {
-  animation: boot-in 0.35s ease-out;
-  padding-top: 40px;
+  animation: rise 0.5s ease both;
+}
+
+@media (max-width: 760px) {
+  .app {
+    padding: 0 20px 64px;
+  }
 }

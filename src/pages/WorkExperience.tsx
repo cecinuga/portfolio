@@ -1,5 +1,4 @@
 import { PageHeader } from '../components/PageHeader'
-import { Panel } from '../components/Panel'
 import { StateLine } from '../components/StateLine'
 import { Timeline, TimelineItem } from '../components/Timeline'
 import { useResume } from '../hooks/useResume'
@@ -7,9 +6,9 @@ import { findSection, type ResumeEntry } from '../utils/resumeParser'
 
 function EntryBullets({ bullets }: { bullets: string[] }) {
   return (
-    <ul style={{ marginTop: 8, paddingLeft: 20, color: 'var(--text-dim)' }}>
-      {bullets.map((b) => (
-        <li key={b}>{b}</li>
+    <ul className="entry-bullets" style={{ marginTop: 12 }}>
+      {bullets.map((bullet) => (
+        <li key={bullet}>{bullet}</li>
       ))}
     </ul>
   )
@@ -35,28 +34,16 @@ function ExperienceTimeline({ entries }: { entries: ResumeEntry[] }) {
 export function WorkExperience() {
   const { data: resume, loading, error } = useResume()
   const experience = resume ? findSection(resume, 'EXPERIENCE') : undefined
-  const education = resume ? findSection(resume, 'EDUCATION') : undefined
 
   return (
     <main className="page">
       <PageHeader
-        kicker="SERVICE RECORD"
-        title="WORK EXPERIENCE"
-        note="Extracted at runtime from the Resume stored on this terminal."
+        kicker="Career"
+        title="Work Experience"
+        note="Where I've worked and what I did there — straight from my resume."
       />
-      <StateLine
-        loading={loading}
-        error={error}
-        loadingText="> PARSING RESUME ..."
-      />
+      <StateLine loading={loading} error={error} loadingText="Parsing resume…" />
       {experience && <ExperienceTimeline entries={experience.entries} />}
-      {education && education.entries.length > 0 && (
-        <div style={{ marginTop: 64 }}>
-          <Panel label="EDUCATION">
-            <ExperienceTimeline entries={education.entries} />
-          </Panel>
-        </div>
-      )}
     </main>
   )
 }

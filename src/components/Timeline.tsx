@@ -26,11 +26,13 @@ export function TimelineItem({
   return (
     <article className="timeline-item">
       <span className="timeline-item__node" aria-hidden="true" />
-      <div className="timeline-item__meta">
-        {period && <span className="timeline-item__period">{period}</span>}
-        {subtitle && <span className="timeline-item__subtitle">{subtitle}</span>}
-      </div>
+      {period && (
+        <div className="timeline-item__meta">
+          <span className="timeline-item__period">{period}</span>
+        </div>
+      )}
       <h2 className="timeline-item__title">{title}</h2>
+      {subtitle && <span className="timeline-item__subtitle">{subtitle}</span>}
       {children}
     </article>
   )

@@ -1,15 +1,8 @@
 import rawConfig from './site.config.json'
 
-export interface SocialAttribution {
-  href: string
-  title: string
-}
-
 export interface SocialLink {
   name: string
   url: string
-  icon: string
-  attribution: SocialAttribution
 }
 
 export interface PageLink {
@@ -36,16 +29,32 @@ export interface BlogEntry {
   link: string | null
 }
 
+export interface FactEntry {
+  label: string
+  value: string
+}
+
+export interface QualitySection {
+  title: string
+  intro: string
+  listLabel: string
+  values: string[]
+  paragraphs: string[]
+}
+
 export interface SiteConfig {
   site: {
     title: string
-    codename: string
     tagline: string
-    subtitle: string
-    facility: string
-    bootLines: string[]
+    kicker: string
+    rightNow: FactEntry[]
   }
-  resume: { path: string }
+  resume: {
+    /** Plaintext resume parsed at runtime by Work Experience. */
+    path: string
+    /** File served behind the header's Resume download button. */
+    download: string
+  }
   pages: PageLink[]
   socials: SocialLink[]
   github: {
@@ -54,9 +63,9 @@ export interface SiteConfig {
     repositories: string[]
   }
   about: {
-    heading: string
     paragraphs: string[]
     skills: string[]
+    quality: QualitySection
   }
   experiments: ExperimentEntry[]
   blog: BlogEntry[]

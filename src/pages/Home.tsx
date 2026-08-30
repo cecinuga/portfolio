@@ -1,37 +1,67 @@
 import { config } from '../config'
-import { PageHeader } from '../components/PageHeader'
-import { Panel } from '../components/Panel'
-import { StatusTag } from '../components/StatusTag'
 
-/** Boot log line with a staggered power-on delay. */
-function BootLine({ line, index }: { line: string; index: number }) {
-  return <li style={{ animationDelay: `${0.4 + index * 0.35}s` }}>{line}</li>
-}
-
+/** Home: hero introduction, skills, current status and the quality manifesto. */
 export function Home() {
-  const { site } = config
+  const { site, about } = config
   return (
     <main className="page">
       <section className="hero">
-        <h1 className="hero__title">{site.title}</h1>
-        <p className="hero__tagline">{site.tagline}</p>
-        <p className="hero__subtitle">{site.subtitle}</p>
-      </section>
-
-      <PageHeader
-        kicker="TRANSMISSION"
-        title="ARCHIVE ONLINE"
-        note="You have reached the personal archive of a software engineer. Machine learning models, experiments and work logs are preserved on this terminal. Navigate with the menu above."
-      />
-      <StatusTag label="RUNNING" />
-
-      <Panel label="SYSTEM BOOT">
-        <ul className="boot-log">
-          {site.bootLines.map((line, i) => (
-            <BootLine key={line} line={line} index={i} />
+        <span className="hero__shape hero__shape--1" aria-hidden="true" />
+        <span className="hero__shape hero__shape--2" aria-hidden="true" />
+        <span className="hero__shape hero__shape--3" aria-hidden="true" />
+        <div className="hero__inner">
+          <div className="hero__kicker">{site.kicker}</div>
+          <h1 className="hero__title">{site.title}</h1>
+          {about.paragraphs.map((paragraph, index) => (
+            <p
+              key={paragraph}
+              className={
+                index === 0 ? 'hero__lead' : 'hero__lead hero__lead--muted'
+              }
+            >
+              {paragraph}
+            </p>
           ))}
-        </ul>
-      </Panel>
+          <div className="tag-row" style={{ margin: '18px 0 48px' }}>
+            {about.skills.map((skill) => (
+              <span key={skill} className="tag tag--accent">
+                {skill}
+              </span>
+            ))}
+          </div>
+          <div className="quality-card">
+            <h2>{about.quality.title}</h2>
+            <p className="quality-card__intro">{about.quality.intro}</p>
+            <p className="quality-card__label">{about.quality.listLabel}</p>
+            <div className="tag-row" style={{ marginBottom: 24 }}>
+              {about.quality.values.map((value) => (
+                <span key={value} className="tag tag--sage">
+                  {value}
+                </span>
+              ))}
+            </div>
+            {about.quality.paragraphs.map((paragraph) => (
+              <p key={paragraph} className="quality-card__text">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+          <div className="card fact-card" style={{marginTop: "1rem"}}>
+            <div className="fact-card__label">
+              <span className="fact-card__dot" aria-hidden="true" />
+              Right now
+            </div>
+            <div className="fact-card__rows">
+              {site.rightNow.map((fact) => (
+                <div key={fact.label}>
+                  <span>{fact.label} · </span>
+                  <strong>{fact.value}</strong>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   )
 }

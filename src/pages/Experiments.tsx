@@ -1,30 +1,42 @@
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { config } from '../config'
+import { ArrowUpRightIcon } from '../components/Icons'
 import { PageHeader } from '../components/PageHeader'
-import { Panel } from '../components/Panel'
 import { StatusTag } from '../components/StatusTag'
 import type { ExperimentEntry } from '../config'
-import { experimentSlug } from '../utils/experiments'
+import { experimentSlug, formatLinkLabel } from '../utils/experiments'
 
 function ExperimentCard({ experiment }: { experiment: ExperimentEntry }) {
+  const navigate = useNavigate()
+  const links = experiment.link ? Object.entries(experiment.link) : []
   return (
-    <Link
-      className="card-link"
-      to={`/experiments/${experimentSlug(experiment.title)}`}
+    <article
+      className="card exp-card"
+      onClick={() => navigate(`/experiments/${experimentSlug(experiment.title)}`)}
     >
-      <Panel label={experiment.id}>
+      <div className="exp-card__meta">
         <StatusTag label={experiment.status} />
-        <h2 style={{ margin: '12px 0 8px', fontSize: '1.1rem' }}>
-          {experiment.title}
-        </h2>
-        <p style={{ color: 'var(--text-dim)', fontSize: '0.85rem' }}>
-          {experiment.description}
-        </p>
-        <p style={{ marginTop: 12 }}>
-          <span className="card-link__open">{'> OPEN'}</span>
-        </p>
-      </Panel>
-    </Link>
+        <span className="exp-card__id">{experiment.id}</span>
+      </div>
+      <h3 className="exp-card__title">{experiment.title}</h3>
+      <p className="exp-card__desc">{experiment.description}</p>
+      {links.length > 0 && (
+        <div className="link-row">
+          {links.map(([label, href]) => (
+            <a
+              key={label}
+              className="arrow-link"
+              href={href}
+              target="_blank"
+              rel="noreferrer"
+              onClick={(event) => event.stopPropagation()}
+            >
+              {formatLinkLabel(label)} <ArrowUpRightIcon size={13} />
+            </a>
+          ))}
+        </div>
+      )}
+    </article>
   )
 }
 
@@ -32,13 +44,16 @@ export function Experiments() {
   return (
     <main className="page">
       <PageHeader
-        kicker="LABORATORY"
-        title="EXPERIMENTS"
-        note="Research units recovered from the lab sector. Some are still running."
+        kicker="The lab"
+        title="Experiments"
+        note="Small research studies from my lab time. Some are still running."
       />
       <div className="card-grid">
         {config.experiments.map((experiment) => (
-          <ExperimentCard key={experiment.id} experiment={experiment} />
+          <ExperimentCard
+            key={`${experiment.id}-${experiment.title}`}
+            experiment={experiment}
+          />
         ))}
       </div>
     </main>

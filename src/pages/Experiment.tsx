@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ArrowLeftIcon, ArrowUpRightIcon } from '../components/Icons'
 import { MarkdownView } from '../components/MarkdownView'
@@ -5,6 +6,7 @@ import { Panel } from '../components/Panel'
 import { StateLine } from '../components/StateLine'
 import { StatusTag } from '../components/StatusTag'
 import { useExperimentReadme } from '../hooks/useExperimentReadme'
+import { trackEvent } from '../utils/analytics'
 import {
   experimentReadmeLink,
   findExperimentBySlug,
@@ -18,6 +20,25 @@ export function Experiment() {
   const { data: readme, loading, error } = useExperimentReadme(
     experiment ? experimentReadmeLink(experiment) : null,
   )
+
+  useEffect(() => {
+    if (!experiment) {
+      trackEvent('experiment_not_found', { slug })
+      return
+    }
+    trackEvent('experiment_detail_view', {
+      id: experiment.id,
+      title: experiment.title,
+      status: experiment.status,
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [experiment?.id])
+
+  useEffect(() => {
+    if (!experiment || loading || !error) return
+    trackEvent('experiment_readme_error', { id: experiment.id, message: String(error) })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [experiment?.id, loading, error])
 
   if (!experiment) {
     return (
@@ -39,7 +60,11 @@ export function Experiment() {
 
   return (
     <main className="page detail">
-      <Link to="/experiments" className="back-button">
+      <Link
+        to="/experiments"
+        className="back-button"
+        onClick={() => trackEvent('experiment_back_click', { id: experiment.id })}
+      >
         <ArrowLeftIcon size={14} />
         All experiments
       </Link>
@@ -58,6 +83,9 @@ export function Experiment() {
               href={href}
               target="_blank"
               rel="noreferrer"
+              onClick={() =>
+                trackEvent('experiment_link_click', { id: experiment.id, label })
+              }
             >
               {formatLinkLabel(label)} <ArrowUpRightIcon size={13} />
             </a>

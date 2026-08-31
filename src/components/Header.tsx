@@ -24,7 +24,7 @@ export function Header() {
             className="resume-button"
             href={config.resume.download}
             download
-            onClick={() => trackEvent('resume_download')}
+            onClick={() => trackEvent('resume_download', { file: config.resume.download })}
           >
             <DownloadIcon size={15} />
             Resume

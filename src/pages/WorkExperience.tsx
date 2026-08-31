@@ -1,7 +1,9 @@
+import { useEffect } from 'react'
 import { PageHeader } from '../components/PageHeader'
 import { StateLine } from '../components/StateLine'
 import { Timeline, TimelineItem } from '../components/Timeline'
 import { useResume } from '../hooks/useResume'
+import { trackEvent } from '../utils/analytics'
 import { findSection, type ResumeEntry } from '../utils/resumeParser'
 
 function EntryBullets({ bullets }: { bullets: string[] }) {
@@ -34,6 +36,16 @@ function ExperienceTimeline({ entries }: { entries: ResumeEntry[] }) {
 export function WorkExperience() {
   const { data: resume, loading, error } = useResume()
   const experience = resume ? findSection(resume, 'EXPERIENCE') : undefined
+
+  useEffect(() => {
+    if (loading) return
+    if (error) {
+      trackEvent('work_experience_error', { message: String(error) })
+    } else if (experience) {
+      trackEvent('work_experience_view', { entry_count: experience.entries.length })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading, error, experience])
 
   return (
     <main className="page">

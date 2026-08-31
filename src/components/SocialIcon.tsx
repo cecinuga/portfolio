@@ -1,5 +1,6 @@
 import type { ComponentType } from 'react'
 import type { SocialLink } from '../config'
+import { trackEvent } from '../utils/analytics'
 import { GithubIcon, LinkedinIcon, MailIcon } from './Icons'
 
 const ICON_BY_NAME: Record<string, ComponentType<{ size?: number }>> = {
@@ -23,6 +24,7 @@ export function SocialIcon({ social }: SocialIconProps) {
       rel="noreferrer"
       title={social.name}
       aria-label={social.name}
+      onClick={() => trackEvent('social_click', { platform: social.name })}
     >
       {Icon ? <Icon size={17} /> : social.name.charAt(0)}
     </a>

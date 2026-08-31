@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { config } from '../config'
+import { trackEvent } from '../utils/analytics'
 import { DownloadIcon } from './Icons'
 import { NavMenu } from './NavMenu'
 import { SocialBar } from './SocialBar'
@@ -23,6 +24,7 @@ export function Header() {
             className="resume-button"
             href={config.resume.download}
             download
+            onClick={() => trackEvent('resume_download')}
           >
             <DownloadIcon size={15} />
             Resume

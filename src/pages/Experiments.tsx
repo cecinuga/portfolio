@@ -4,6 +4,7 @@ import { ArrowUpRightIcon } from '../components/Icons'
 import { PageHeader } from '../components/PageHeader'
 import { StatusTag } from '../components/StatusTag'
 import type { ExperimentEntry } from '../config'
+import { trackEvent } from '../utils/analytics'
 import { experimentSlug, formatLinkLabel } from '../utils/experiments'
 
 function ExperimentCard({ experiment }: { experiment: ExperimentEntry }) {
@@ -12,7 +13,10 @@ function ExperimentCard({ experiment }: { experiment: ExperimentEntry }) {
   return (
     <article
       className="card exp-card"
-      onClick={() => navigate(`/experiments/${experimentSlug(experiment.title)}`)}
+      onClick={() => {
+        trackEvent('experiment_open', { title: experiment.title })
+        navigate(`/experiments/${experimentSlug(experiment.title)}`)
+      }}
     >
       <div className="exp-card__meta">
         <StatusTag label={experiment.status} />
@@ -29,7 +33,10 @@ function ExperimentCard({ experiment }: { experiment: ExperimentEntry }) {
               href={href}
               target="_blank"
               rel="noreferrer"
-              onClick={(event) => event.stopPropagation()}
+              onClick={(event) => {
+                event.stopPropagation()
+                trackEvent('experiment_link_click', { title: experiment.title, label })
+              }}
             >
               {formatLinkLabel(label)} <ArrowUpRightIcon size={13} />
             </a>

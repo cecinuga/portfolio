@@ -1,4 +1,5 @@
 import type { RepoReadme } from '../utils/github'
+import { trackEvent } from '../utils/analytics'
 import { ArrowUpRightIcon } from './Icons'
 import { MarkdownView } from './MarkdownView'
 
@@ -34,6 +35,7 @@ export function ReadmePreview({ readme }: ReadmePreviewProps) {
         href={readme.url}
         target="_blank"
         rel="noreferrer"
+        onClick={() => trackEvent('project_link_click', { repo: readme.repo })}
       >
         Continue reading on GitHub <ArrowUpRightIcon size={13} />
       </a>

@@ -1,8 +1,16 @@
+import { useEffect } from 'react'
 import { config } from '../config'
+import { trackEvent } from '../utils/analytics'
 
 /** Home: hero introduction, skills, current status and the quality manifesto. */
 export function Home() {
   const { site, about } = config
+
+  useEffect(() => {
+    trackEvent('home_view', { skill_count: about.skills.length })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <main className="page">
       <section className="hero">

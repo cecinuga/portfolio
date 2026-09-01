@@ -6,3 +6,6 @@ dist
 Resume.txt
 Matteo Marchetti - Resume.pdf
 *.log
+.env
+.env.*
+!.env.example

@@ -1,10 +1,12 @@
 /**
  * Firebase Analytics wiring (frontend-only: no backend, no auth).
  *
- * Config values below are the public web app identifiers for this Firebase
- * project (safe to ship client-side — they identify the project, they do
- * not authorize anything). `measurementId` is what links this app to its
- * GA4 property; without it `getAnalytics` silently collects nothing.
+ * Config values come from `VITE_FIREBASE_*` env vars (see `.env.example`),
+ * so the project identifiers stay out of the repo. They are still inlined
+ * into the bundle at build time — Vite has no runtime env — but that is
+ * fine: these are public web app identifiers (they identify the project,
+ * they do not authorize anything). `measurementId` is what links this app
+ * to its GA4 property; without it `getAnalytics` silently collects nothing.
  */
 import { initializeApp } from 'firebase/app'
 import {
@@ -16,25 +18,30 @@ import {
 } from 'firebase/analytics'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyA0RBkzzL0UPctbcknlotBSo_9T9siFMB4',
-  authDomain: 'matteo-marchetti-portfolio.firebaseapp.com',
-  projectId: 'matteo-marchetti-portfolio',
-  storageBucket: 'matteo-marchetti-portfolio.firebasestorage.app',
-  messagingSenderId: '346828869106',
-  appId: '1:346828869106:web:6bcf75c159c44066372f6b',
-  measurementId: 'G-0QMX62DGQC',
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 }
 
-const app = initializeApp(firebaseConfig)
+/** A build without the env vars (fresh clone, no `.env`) simply runs untracked. */
+const configured = Boolean(firebaseConfig.apiKey && firebaseConfig.measurementId)
+
+const app = configured ? initializeApp(firebaseConfig) : null
 
 /**
  * Analytics needs browser APIs (cookies, IndexedDB) that aren't always
  * available (privacy modes, older browsers, SSR). Resolves to `null` when
  * unsupported so callers can no-op instead of throwing.
  */
-const analyticsReady: Promise<Analytics | null> = isSupported()
-  .then((supported) => (supported ? getAnalytics(app) : null))
-  .catch(() => null)
+const analyticsReady: Promise<Analytics | null> = !app
+  ? Promise.resolve(null)
+  : isSupported()
+      .then((supported) => (supported ? getAnalytics(app) : null))
+      .catch(() => null)
 
 /** Logs a GA4 event. Fire-and-forget; safe to call before analytics resolves. */
 export function trackEvent(name: string, params?: Record<string, unknown>): void {

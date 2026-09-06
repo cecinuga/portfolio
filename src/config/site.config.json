@@ -79,6 +79,15 @@
   "experiments": [
     {
       "id": "EXP-001",
+      "title": "Full Factorial Experiment",
+      "status": "ARCHIVED",
+      "description": "The training scaling law of recurrent networks",
+      "link": {
+        "github": "https://github.com/cecinuga/thorcino/tree/main/examples/recurrent/scaling_law"
+      }
+    },
+    {
+      "id": "EXP-002",
       "title": "LSTM — binary classification over BNF grammar strings",
       "status": "ARCHIVED",
       "description": "Train an LSTM to classify valid or invalid sequences according to a BNF Grammar definition",
@@ -87,7 +96,7 @@
       }
     },
     {
-      "id": "EXP-001",
+      "id": "EXP-003",
       "title": "Linear regression — ill cond",
       "status": "ARCHIVED",
       "description": "How ill-conditioned data breaks weights",
@@ -96,7 +105,7 @@
       }
     },
     {
-      "id": "EXP-002",
+      "id": "EXP-004",
       "title": "Linear regression — regularization",
       "status": "ARCHIVED",
       "description": "Regularization effects on the model parameters in high variance dataset",
